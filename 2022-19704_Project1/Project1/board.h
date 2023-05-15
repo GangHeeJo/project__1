@@ -182,32 +182,7 @@ void Board::modify_content(int id, char content) { // delete와 동일하다. �
 
 
 void Board::modify_position(int id, int x, int y) {
-    recursion(id);
-
-    int idx = delete_above_pages.size()-1;
-    int b_width = delete_above_pages[idx].get_width();
-    int b_height = delete_above_pages[idx].get_height();
-    int b_id = delete_above_pages[idx].get_id();
-    char b_content = delete_above_pages[idx].get_content();
-    Page new_page = Page(x, y, b_width, b_height, b_id, b_content);
     
-    delete_above_pages.erase(delete_above_pages.begin() + delete_above_pages.size() -1);
-    delete_above_pages.push_back(new_page);
-    // 지운 page들을 다시 delete_above_pages에 저장하는 코드
-
-    for (int i=0; i <delete_above_pages.size(); i++) {
-        int idx = delete_above_pages.size() -i -1;
-
-        int a_x = delete_above_pages[idx].get_x();
-        int a_y = delete_above_pages[idx].get_y();
-        int a_id = delete_above_pages[idx].get_id();
-        int a_width = delete_above_pages[idx].get_width();
-        int a_height = delete_above_pages[idx].get_height();
-        char a_content = delete_above_pages[idx].get_content();
-
-        insert_page(a_x, a_y, a_width, a_height, a_id, a_content); // insert new pages
-    }
-    delete_above_pages = {};
 }
 
 void Board::recursion(int id) { // Here is very important part(recursion). This is used at delete, modify .etc
