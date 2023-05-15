@@ -154,7 +154,7 @@ void Board::delete_page(int id) {
     delete_above_pages = {};
 }
 
-void Board::modify_content(int id, char content) {
+void Board::modify_content(int id, char content) { // delete와 동일하다. 하지만 recursion 이후 새로운 page를 생성하여 insert하는 과정이 추가된다.
 
     recursion(id); // 목표 page까지 지우기
 
@@ -210,7 +210,7 @@ void Board::modify_position(int id, int x, int y) {
     delete_above_pages = {};
 }
 
-void Board::recursion(int id) {
+void Board::recursion(int id) { // Here is very important part(recursion). This is used at delete, modify .etc
     /*int tidx;
     for (int i=0; i<vec.size(); i++) {
         if (vec[i].get_id() == id) {
